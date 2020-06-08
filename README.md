@@ -15,3 +15,4 @@ json
 3. 其他酌情修改，基本不用修改
 4. 命令行运行`python3 F*ck_SMU.py`
 
+# SMU_yiqingreport
