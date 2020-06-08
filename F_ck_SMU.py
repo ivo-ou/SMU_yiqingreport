@@ -58,4 +58,12 @@ r=sess.get(portal_url,params=params)                                            
 
 Tb_url = "http://tougao.gdaw.net/Home2020/NanFangYiKe/baomingInsert5.html"
 r = sess.post(Tb_url,data=mydata)                                                   #表单提交
-print(r.text)
+
+if r.text == 1:
+    print("填报成功")
+elif r.text == 2:
+    print("此手机号码主人，已经报名成功了，不能重复报名")
+elif r.text ==3:
+    print("请填写完整表单")
+else:
+    print('数据保存失败（垃圾设计，理论上成功了，但是不会提醒已经报名成功，可以去每日修改看看')
