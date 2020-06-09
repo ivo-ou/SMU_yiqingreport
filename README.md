@@ -9,7 +9,7 @@ requests
 json
 
 使用方式
-打开`F*ck_SMU.py`  
+打开`F_ck_SMU.py`  
 1. 填写手机号码
 2. 修改（xiaoqu)校区：本部校区、顺德校区
 3. 其他酌情修改，基本不用修改

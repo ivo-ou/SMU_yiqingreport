@@ -54,16 +54,24 @@ mydata = {                                   #填报数据
 sess = requests.Session()
 
 portal_url = "http://tougao.gdaw.net/Home2020/NanFangYiKe/xuebaomingyanzheng.html"
-r=sess.get(portal_url,params=params)                                                #登陆
+r = sess.get(portal_url,params = params)                                                #登陆
 
 Tb_url = "http://tougao.gdaw.net/Home2020/NanFangYiKe/baomingInsert5.html"
-r = sess.post(Tb_url,data=mydata)                                                   #表单提交
+r = sess.post(Tb_url,data = mydata)                                                   #表单提交
 
-if r.text == 1:
+status = r.text.strip()
+if status == "1":
     print("填报成功")
-elif r.text == 2:
+elif status == "2":
     print("此手机号码主人，已经报名成功了，不能重复报名")
-elif r.text ==3:
+elif status =="3":
     print("请填写完整表单")
 else:
-    print('数据保存失败（垃圾设计，理论上成功了，但是不会提醒已经报名成功，可以去每日修改看看')
+    if "您今天已经填写过了" in status:
+        print("您今天已经填写过了")
+    else:
+        print('数据保存失败')
+
+
+
+
