@@ -1,10 +1,26 @@
-import requests
+import os
+import sys
+import time
+
+try:
+    import requests
+except ImportError:
+    print("正在安装requests扩展")
+    res = os.system("pip3 install requests >nul")
+    if res != 0:
+        print("requests扩展安装失败")
+        sys.exit(1)
+    import requests
 import json
 import random
 import threading
 
+
 # 定义全局变量
 my_num = 0
+
+# 重发次数
+num = 3
 
 # 创建互斥锁
 lock = threading.Lock()
@@ -66,7 +82,14 @@ def meiri(phone,xiaoqu):
 
     Tb_url = "http://tougao.gdaw.net/Home2020/NanFangYiKe/baomingInsert5.html"
     r = sess.post(Tb_url,data = mydata)                                                   #表单提交
-
+    time.sleep(1)
+    status = r.text.strip()
+    # 失败重发3次
+    if status != "1":
+        num = 3
+        for i in range(num):
+            r = sess.post(Tb_url, data=mydata)  # 每日填报表单提交
+            time.sleep(2)
     status = r.text.strip()
     if status == "1":
         #print("填报成功")
@@ -133,7 +156,14 @@ def tiwen(phone):
 
     Tb_url = "http://tougao.gdaw.net/Home2020/NanFangYiKe/wenduupdate.html"
     r = sess.post(Tb_url, json=wddata0)  # 温度填报表单提交（早上）
-
+    time.sleep(1)
+    status = r.text.strip()
+    # 失败重发3次
+    if status != "1":
+        num = 3
+        for i in range(num):
+            r = sess.post(Tb_url, json=wddata0)  # 温度填报表单提交（早上）
+            time.sleep(2)
     status = r.text.strip()
     if status == "1":
         #print("早上温度：填报成功")
@@ -143,6 +173,14 @@ def tiwen(phone):
         log.append("早上温度：数据保存失败")
     Tb_url = "http://tougao.gdaw.net/Home2020/NanFangYiKe/wenduupdate.html"
     r = sess.post(Tb_url, json=wddata1)  # 温度填报表单提交（中午）
+    time.sleep(1)
+    status = r.text.strip()
+    # 失败重发3次
+    if status != "1":
+        num = 3
+        for i in range(num):
+            r = sess.post(Tb_url, json=wddata1)  # 温度填报表单提交（中午）
+            time.sleep(2)
     status = r.text.strip()
     if status == "1":
         #print("中午温度：填报成功")
@@ -153,7 +191,15 @@ def tiwen(phone):
 
     Tb_url = "http://tougao.gdaw.net/Home2020/NanFangYiKe/wenduupdate.html"
     r = sess.post(Tb_url, json=wddata2)  # 温度填报表单提交（晚上）
+    time.sleep(1)
+    status = r.text.strip()
 
+    # 失败重发3次
+    if status != "1":
+        num = 3
+        for i in range(num):
+            r = sess.post(Tb_url, json=wddata2)  # 温度填报表单提交（晚上）
+            time.sleep(2)
     status = r.text.strip()
     if status == "1":
         #print("晚上温度：填报成功")
