@@ -62,14 +62,19 @@ class MY_GUI():
     # 功能函数
     def fileread(self):
 
-        with open(os.path.join(os.path.dirname(sys.argv[0]), 'data.txt'), mode='r+', encoding='utf-8') as f:  # 设置文件对象
-            data = f.read().split(",")
-            phone = data[0]  # 将txt文件的所有内容读入到字符串str中
-            xiaoqu = data[1]
+        with open(resource_path('data.txt'), mode='r+', encoding='utf-8' ) as f:  # 设置文件对象
+            if os.path.getsize(resource_path('data.txt')) != 0:
+                data = f.read().split(",")
+                phone = data[0]  # 将txt文件的所有内容读入到字符串str中
+                xiaoqu = data[1]
+            else:
+                phone = ""
+                xiaoqu = "校本部"
         return phone, xiaoqu
 
     def filewrite(self):
-        f = open(os.path.join(os.path.dirname(sys.argv[0]), 'data.txt'), "w")  # 设置文件对象
+        # f = open(os.path.join(os.path.dirname(sys.argv[0]), 'data.txt'), "w")  # 设置文件对象
+        f = open (resource_path('data.txt'), "w" )  # 设置文件对象
         f.write(self.init_phone_Text.get("0.0", END).strip() + "," + self.init_xiaoqu_Text.get("0.0",
                                                                                                END).strip())  # 将字符串写入文件中
         f.close()
@@ -111,6 +116,16 @@ class MY_GUI():
         else:
             self.log_data_Text.delete(1.0, 2.0)
             self.log_data_Text.insert(END, logmsg_in)
+
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.environ.get("_MEIPASS2", os.path.abspath("."))
+
+    return os.path.join(base_path, relative_path)
 
 
 def gui_start():
