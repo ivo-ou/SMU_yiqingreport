@@ -8,23 +8,17 @@ import json
 import random
 import threading
 import time
+
 phone1 = ""
 phone2 = ""
 
-# 定义全局变量
-my_num = 0
+
 
 # 重发次数
 num = 3
 
-# 创建互斥锁
-lock = threading.Lock()
-
 log = []
 def report(phonenum):           #未返校
-    # 上锁
-    lock.acquire()
-    global my_num
 
     log.append("手机号码"+str(phonenum))
     params = {
@@ -79,12 +73,7 @@ def report(phonenum):           #未返校
     #print("----------------------------------")
     status = r.text.strip()
 
-    #失败重发3次
-    if status != "1":
-        num = 3
-        for i in range(num):
-            r = sess.post(Tb_url, data=mydata)  # 每日填报表单提交
-            time.sleep(2)
+
     status = r.text.strip()
 
     if status == "1":
@@ -203,15 +192,11 @@ def report(phonenum):           #未返校
         log.append("晚上温度：数据保存失败")
     log.append("    ")
     log.append("    ")
-    # 释放锁
-    lock.release()
+
 
 
 
 def report1(phonenum):      #已返校
-    # 上锁
-    lock.acquire()
-    global my_num
 
     log.append("手机号码"+str(phonenum))
     params = {
@@ -389,8 +374,6 @@ def report1(phonenum):      #已返校
     log.append("    ")
     log.append("    ")
 
-    # 释放锁
-    lock.release()
 
 if __name__ == '__main__':
     # 这里填报了两个人的数据，一个已经返校，一个未返校，如果只有一个人，请把不符合的注释掉（在前面新增 # 注释）
