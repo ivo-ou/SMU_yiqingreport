@@ -12,7 +12,7 @@
 ###### random  
 
 # 使用方式
-<font size=10>GUI版本</font>
+<font size=20>GUI版本</font>
 1. 命令行运行`main.py`(会自动安装所需依赖)
 2. 输入手机号码与校区（校本部、顺德校区）
 3. 点击保存
@@ -22,7 +22,7 @@
 
 [windows](https://github.com/ivo-ou/SMU_yiqingreport/releases)
 
-<font size=10>auto_demo</font>
+<font size=20>auto_demo版本</font>
 ###### 本脚本适用于全自动管理
 ###### 建议创建任务计划管理，linux系统可以使用cron管理  
 

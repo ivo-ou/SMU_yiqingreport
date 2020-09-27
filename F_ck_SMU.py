@@ -39,36 +39,20 @@ def meiri(phone,xiaoqu):
 
 
     mydata = {                                   #填报数据
-        "xiaoqu": xiaoqu,                     # 校区
-
-
-        'residence':'否',                        #境外旅行
-        'shifoufanhui':'否',                     #返校
-        'shentijiankang':'身体良好，无症状',       #身体状况
-        'wenzhoulaifang':'否',                   #温州来访
-        'fare':'否',                             #发热
-        'yisi':'否',                             #疑似
-        'quezhen':'否',                          #确诊
-        'jiechu':'否',                           #接触
-
-    
-########以下不用填
-        'laifang':'否',
-        'laifangtime':'',
-        'city':"",
-        'muqian':'',
-        'hesuan':'',
-        'hesuanjieguo':'',
-        'shifoufanhui':'',
-        'shijidaoxiao':'',
-        'fanxiaodidian':"",
-        'openid':'',
-        'country':'',
-        'wenzhoufanhui':2,
-        'wenzhouzhongzhuan':3,
-        'wenzhoulaifangtime':'',
-        'shisiwenzhoulaifang':'否',
-        'shisiwenzhoulaifangtime':'',
+    "shentijiankang": "身体良好，无症状",
+	"laifang": "否",
+	"residence": "否",
+	"zhonggao": "无",
+	"fare": "否",
+	"yisi": "否",
+	"quezhen": "否",
+	"jiechu": "否",
+	"openid": "",
+	"wenzhoulaifang": 2,
+	"xiaoqu": xiaoqu,
+	"zhuangtai": "住校",
+	"jutizhuangtai": xiaoqu,
+	"wenzhoulaifangtime": ""
 
     }
 
@@ -127,12 +111,9 @@ def tiwen(phone):
     idlocationend = idlocationhead + 7
     userid = response[idlocationhead:idlocationend]  # 获得id
 
-    zaoshangwendu = random.random() + 36
-    zaoshangwendu = round(zaoshangwendu, 1)
-    zhongwuwendu = random.random() + 36
-    zhongwuwendu = round(zhongwuwendu, 1)
-    wanshangwendu = random.random() + 36
-    wanshangwendu = round(wanshangwendu, 1)  # 生成随机温度数据
+    zaoshangwendu = round((random.randint(3, 7) / 10 + 36), 1)
+    zhongwuwendu = round((random.randint(3, 7) / 10 + 36), 1)
+    wanshangwendu = round((random.randint(3, 7) / 10 + 36), 1)  # 生成随机温度数据
     wddata0 = {
         "id": userid,
         "zaoshangwendu": zaoshangwendu,
