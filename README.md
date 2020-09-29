@@ -17,7 +17,7 @@
 
 <font size=10>发布程序</font>  
 
-[windows](https://github.com/ivo-ou/SMU_yiqingreport/releases)
+[V2.0](https://github.com/ivo-ou/SMU_yiqingreport/releases)
 
 <font size=20>auto_demo版本</font>
 ###### 本脚本适用于全自动管理
@@ -43,6 +43,6 @@ cron计算器：http://www.bejson.com/othertools/cron/
 
 - [ ] 生成体温截图
 
-    
+
 
   ​
