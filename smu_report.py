@@ -2,6 +2,7 @@ import F_ck_SMU
 import window_qt
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow
+import requests
 
 class mywindow(QMainWindow, window_qt.Ui_SMUreport):
     def __init__(self):
