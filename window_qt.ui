@@ -323,6 +323,9 @@
               <property name="text">
                <string>是</string>
               </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
               <attribute name="buttonGroup">
                <string notr="true">jietu_btngroup</string>
               </attribute>
@@ -354,6 +357,9 @@
               </property>
               <property name="text">
                <string>否</string>
+              </property>
+              <property name="checked">
+               <bool>false</bool>
               </property>
               <attribute name="buttonGroup">
                <string notr="true">jietu_btngroup</string>
